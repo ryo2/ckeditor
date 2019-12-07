@@ -12,6 +12,7 @@ class Ckeditor::ApplicationController < Ckeditor.parent_controller.constantize
   def respond_with_asset(asset)
     asset_response = Ckeditor::AssetResponse.new(asset, request)
     asset.data = asset_response.data
+    asset.account_id = current_user.try(:id)
 
     if asset.save
       render asset_response.success(config.relative_url_root)
