@@ -36,18 +36,18 @@ module Ckeditor
 
         case uploader_type.to_s.downcase
         when 'image' then
-          options[:action] = JavascriptCode.new('EDITOR.config.filebrowserImageUploadUrl')
+          options[:action] = JavascriptCode.new('CKEDITOR.config.filebrowserImageUploadUrl')
           options[:allowedExtensions] = Ckeditor.image_file_types
         when 'flash' then
-          options[:action] = JavascriptCode.new('EDITOR.config.filebrowserFlashUploadUrl')
+          options[:action] = JavascriptCode.new('CKEDITOR.config.filebrowserFlashUploadUrl')
           options[:allowedExtensions] = Ckeditor.flash_file_types
         else
-          options[:action] = JavascriptCode.new('EDITOR.config.filebrowserUploadUrl')
+          options[:action] = JavascriptCode.new('CKEDITOR.config.filebrowserUploadUrl')
           options[:allowedExtensions] = Ckeditor.attachment_file_types
         end
 
         js_options = ActiveSupport::JSON.encode(options)
-        js_options.gsub!(/"(EDITOR\.config\.filebrowser(Image|Flash|)UploadUrl)"/, '\1')
+        js_options.gsub!(/"(CKEDITOR\.config\.filebrowser(Image|Flash|)UploadUrl)"/, '\1')
 
         "(function() { new qq.FileUploaderInput(#{js_options}); }).call(this);".html_safe
       end
