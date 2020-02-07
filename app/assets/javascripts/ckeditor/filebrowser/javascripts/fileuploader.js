@@ -1245,7 +1245,7 @@ qq.extend(qq.UploadHandlerXhr.prototype, {
         params[this._options.fieldName] = name;
         var queryString = qq.obj2url(params, this._options.action);
 
-        xhr.open(this._options.method, '/ckeditor/pictures?' + queryString, true);
+        xhr.open(this._options.method, '/ckeditor/pictures/?' + queryString, true);
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xhr.setRequestHeader("X-File-Name", encodeURIComponent(name));
         xhr.setRequestHeader('X-File-Size', size);
